@@ -36,6 +36,7 @@ resource "aws_instance" "jenkins_server" {
   ami           = "data.aws_ami.amazon_linux_2.id"
   instance_type = "t2.micro"
   
-  tags = { "JenkinsServer"
+  tags = {
+    Name = "JenkinsServer"
   }
 }
