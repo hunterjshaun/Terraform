@@ -18,8 +18,13 @@ data "aws_vpc" "default" {
 }
 
 data "aws_ami" "amazon-linux-2" {
-  most_recent      = true
-  owners           = ["amazon"]
+  most_recent = true
+
+ filter {
+   name   = "name"
+   values = ["amzn2-ami-hvm*"]
+ }
+
 
   filter {
     name   = "root-device-type"
@@ -33,7 +38,7 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 resource "aws_instance" "jenkins_server" {
-  ami           = "data.aws_ami.amazon-linux-2.id"
+  ami           = data.aws_ami.amazon-linux-2.id
   instance_type = "t2.micro"
   
   tags = {
