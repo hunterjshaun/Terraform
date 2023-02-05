@@ -17,9 +17,9 @@ data "aws_vpc" "default" {
   cidr_block = "172.31.0.0/16"
 }
 
-data "aws_ami" "amazon_linux_2" {
+data "aws_ami" "amazon-linux-2" {
   most_recent      = true
-  owners           = ["self"]
+  owners           = ["amazon"]
 
   filter {
     name   = "root-device-type"
@@ -33,7 +33,7 @@ data "aws_ami" "amazon_linux_2" {
 }
 
 resource "aws_instance" "jenkins_server" {
-  ami           = "data.aws_ami.amazon_linux_2.id"
+  ami           = "data.aws_ami.amazon-linux-2.id"
   instance_type = "t2.micro"
   
   tags = {
