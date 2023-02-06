@@ -41,12 +41,7 @@ resource "aws_security_group" "jenkins_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   
-  ingress{
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  
   egress {
     from_port   = 0
     to_port     = 0
@@ -96,4 +91,13 @@ EOF
   tags = {
     Name = "Jenkins_Server"
   }
+}
+
+resource "aws_s3_bucket" "b" {
+  bucket = "jenkins-artifacts-bucket1567"
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
 }
