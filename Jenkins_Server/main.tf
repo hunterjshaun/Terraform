@@ -22,6 +22,10 @@ resource "aws_security_group" "jenkins_security_group" {
   name        = "jenkins_security_group"
   description = "Allow SSH and HTTP traffic"
   vpc_id      = data.aws_vpc.default.id
+  
+  tags = {
+    Name = "JenkinsServerSG"
+  }
 
   ingress {
     from_port   = 22
@@ -90,6 +94,6 @@ systemctl start jenkins
 EOF
     
   tags = {
-    Name = "JenkinsServer"
+    Name = "Jenkins_Server"
   }
 }
