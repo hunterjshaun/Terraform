@@ -19,3 +19,7 @@ variable "private_sn_count" {
 variable "public_sn_count" {
     type = number
 }
+
+variable "access_ip" {
+    type = string
+}
